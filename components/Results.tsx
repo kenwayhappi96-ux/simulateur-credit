@@ -211,7 +211,9 @@ export default function Results({ onRestart }: ResultsProps) {
       });
     }
 
-    if (hasLoans === 'Oui' && loanAmount > 0) {
+   // if (hasLoans === 'Oui' && loanAmount > 0) {
+   if (hasLoans && loanAmount > 0) {
+
       const ratio = (loanAmount / income) * 100;
       if (ratio > 33) {
         suggestions.push({
@@ -219,12 +221,13 @@ export default function Results({ onRestart }: ResultsProps) {
           message: `Votre taux d'endettement (${ratio.toFixed(1)}%) dépasse les 33% recommandés. Réduire vos crédits en cours améliorerait votre dossier.`
         });
       }
-    } else if (hasLoans === 'Non') {
-      suggestions.push({
-        type: 'success',
-        message: "Vous n'avez pas de crédit en cours, c'est un excellent point pour votre dossier."
-      });
-    }
+    } else {
+  // hasLoans === false
+  suggestions.push({
+    type: 'success',
+    message: "Vous n'avez pas de crédit en cours, c'est un excellent point pour votre dossier."
+  });
+}
 
     // Vérifier la propriété du logement (important pour la banque)
     const ownership = 

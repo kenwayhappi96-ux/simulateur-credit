@@ -281,5 +281,6 @@ function generatePDF(
   yPos += 5;
   doc.text('Simulateur Credit - Administration', pageWidth / 2, yPos, { align: 'center' });
 
-  return doc.output('arraybuffer');
+  //return doc.output('arraybuffer');
+  return new Uint8Array(doc.output('arraybuffer'));
 }
